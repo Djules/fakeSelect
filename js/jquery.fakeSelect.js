@@ -1,6 +1,6 @@
 /**
  * Custom jQuery plugin to add style to select widget
- * version: 1.0 (2013-09-12)
+ * version: 1.1 (2014-08-20)
  * @author jvasseur
  */
 ;(function($, doc, win) {
@@ -46,8 +46,17 @@
     FakeSelect.prototype.transform = function() {
         var self = this;
         
-        // get selected value as label if custom label is not defined
-        var label = this.options.label || this.$el.find(':selected').text();
+        var $selected = this.$el.find(':selected'),
+            label = '',
+            is_default = true;
+
+        // if custom label is not defined
+        if (this.options.label) {
+            label = this.options.label;
+        } else {
+            label = $selected.text();
+            is_default = $selected.val() === '';
+        }
         
         // transform <select> with other DOM elements
         this.$el
@@ -60,15 +69,19 @@
                 return '<span class="' + classnames + '" />';
             })
             // prepend label into span before select
-            .before('<span class="' + this.options['class'] + '-label">' + label + '</span>')
+            .before('<span class="' + this.options['class'] + '-label' + (is_default ? ' ' + this.options['class'] + '-label-default' : '' ) + '">' + label + '</span>')
             // append arrow icon after select
             .after('<i class="icon icon-arrow-down"></i>')
     };
     
     FakeSelect.prototype.updateLabel = function() {
-        this.$el.prev().text(
-            this.$el.find(':selected').text()
-        );
+        var $label = this.$el.prev(),
+            $selected = this.$el.find(':selected'),
+            is_default = $selected.val() === '';
+
+        $label
+            .toggleClass(this.options['class'] + '-label-default', is_default)
+            .text($selected.text());
     };
     
     FakeSelect.prototype.destroy = function() {
