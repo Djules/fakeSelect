@@ -1,7 +1,7 @@
-/**!
- * Custom jQuery plugin to add style to select widget
- * version: 1.2 (2014-11-04)
- * @author jvasseur
+/**
+ * jQuery.fakeSelect.js
+ * jQuery plugin for skinning a select HTML field, but keep the native dropdown list (useful for mobile device).
+ * @author Julien Vasseur <julien@poigneedemainvirile.com> (http://djul.es)
  */
 ;(function($, doc, win) {
     "use strict";
@@ -13,8 +13,10 @@
         
         // define defaults parameters
         this.defaults = {
-            label: null,
-            'class': 'faux-select'
+            'label':        null,
+            'class':        'faux-select',
+            'inheritClass': true,
+            'inheritID':    false,
         };
         var meta = this.$el.data(name + '-options');
         this.options = $.extend(this.defaults, options, meta);
@@ -61,7 +63,7 @@
             label = this.options.label;
         } else {
             label = $selected.text();
-            is_default = $selected.val() === '';
+            is_default = !$selected.val().length;
         }
 
         this.$label = $('<span class="' + this.options['class'] + '-label' + (is_default ? ' ' + this.options['class'] + '-label-default' : '' ) + '">' + label + '</span>');
@@ -70,16 +72,19 @@
         this.$el
             // wrap with a span
             .wrap(function() {
+                var tag = '<span';
+
                 var classnames = _this.options['class'];
-                if (_this.$el.attr('class'))
+                if (!!_this.options.inheritClass && _this.$el.attr('class'))
                     classnames += ' ' + _this.$el.attr('class');
+
+                if (!!this.options.inheritID && _this.$el.attr('id'))
+                    tag += ' id="' + name + '-' + _this.$el.attr('id');
                     
-                return '<span class="' + classnames + '" />';
+                return tag + ' class="' + classnames + '" />';
             })
             // prepend label into span before select
-            .before(_this.$label)
-            // append arrow icon after select
-            .after('<i class="icon icon-arrow-down"></i>');
+            .before(_this.$label);
 
         this.$container = this.$el.parent();
     };
