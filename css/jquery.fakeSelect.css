@@ -1,4 +1,4 @@
-/* required styles */
+/** required styles **/
 
 .faux-select {
     position: relative;
@@ -16,24 +16,27 @@
     z-index: 1;
 }
 
-/* minimal skin */
+/** minimal skin **/
 
-.faux-select-label {
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.faux-select {
-    padding-right: 22px;
-}
-
+/* dropdown carret */
 .faux-select:after {
     content: "";
     position: absolute;
     top: 50%;
-    right: 6px;
+    right: 15px;
     border-color: #000 transparent transparent;
     border-style: solid;
     border-width: 6px 5px 0;
     margin-top: -3px; /* half of previous border-top-width */
+}
+
+.faux-select-label {
+    display: block;
+    overflow: hidden;
+    height: 100%;
+    margin-right: 25px;
+}
+/* Default label, from first <option val=""></option> with null value */
+.faux-select-label-default {
+    color: #aaa;
 }

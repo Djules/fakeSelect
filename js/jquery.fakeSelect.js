@@ -78,8 +78,8 @@
                 if (!!_this.options.inheritClass && _this.$el.attr('class'))
                     classnames += ' ' + _this.$el.attr('class');
 
-                if (!!this.options.inheritID && _this.$el.attr('id'))
-                    tag += ' id="' + name + '-' + _this.$el.attr('id');
+                if (!!_this.options.inheritID && _this.$el.attr('id'))
+                    tag += ' id="' + name + '-' + _this.$el.attr('id') + '"';
                     
                 return tag + ' class="' + classnames + '" />';
             })

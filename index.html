@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery.fakeSelect plugin demo page</title>
+
+    <link rel="stylesheet" href="css/jquery.fakeSelect.css">
+    <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="demo">
+            <div class="row">
+                <label for="color-1" class="label">Choose a color</label>
+                <select name="color-1" id="color-1" class="control">
+                    <option value="">-- choose --</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="purple">Purple</option>
+                    <option value="pink">Pink</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="color-2" class="label">Choose another color</label>
+                <select name="color-2" id="color-2" class="control control-block">
+                    <option value="">-- choose --</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="purple">Purple</option>
+                    <option value="pink">Pink</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="very-long-color-name">This-is-a-very-very-very-long-color-name-Lorem-ipsum-dolor-sit-amet,-consectetur-adipisicing-elit.</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.fakeSelect.js"></script>
+    <script>
+        $('select').fakeSelect();
+    </script>
+
+</body>
+</html>
