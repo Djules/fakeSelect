@@ -63,6 +63,9 @@
         if (this.options.label) {
             label = this.options.label;
         } else {
+            if (!$selected.length) {
+                $selected = this.$el.find('option').first();
+            }
             label = $selected.text();
             default_val = $selected.val();
             is_default = !default_val || !default_val.length;
