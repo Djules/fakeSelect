@@ -56,6 +56,7 @@
         
         var $selected = this.$el.find(':selected'),
             label = '',
+            default_val = '',
             is_default = true;
 
         // if custom label is not defined
@@ -63,7 +64,8 @@
             label = this.options.label;
         } else {
             label = $selected.text();
-            is_default = !$selected.val().length;
+            default_val = $selected.val();
+            is_default = !default_val || !default_val.length;
         }
 
         this.$label = $('<span class="' + this.options['class'] + '-label' + (is_default ? ' ' + this.options['class'] + '-label-default' : '' ) + '">' + label + '</span>');
